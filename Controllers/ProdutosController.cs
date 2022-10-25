@@ -30,7 +30,7 @@ namespace APICatalogo.Controllers
 
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}", Name = "ObterProduto")]
         public ActionResult<Produto> Get(int id)
         {
             if (_context.Produtos == null) return NotFound("There's no product.");
@@ -41,6 +41,16 @@ namespace APICatalogo.Controllers
                 return NotFound("Product not found");
 
             return Ok(produto);
+        }
+
+        [HttpPost]
+        public ActionResult Post(Produto produto)
+        {
+            _context.Produtos?.Add(produto);
+            _context.SaveChanges();
+
+            return new CreatedAtRouteResult("ObterProduto", 
+                new { id = produto.ProdutoId }, produto);
         }
 
     }
