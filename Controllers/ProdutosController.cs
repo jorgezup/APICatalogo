@@ -26,7 +26,7 @@ namespace APICatalogo.Controllers
         {
             if (_context.Produtos == null) return NotFound("Product not found");
             
-            var produtos = _context.Produtos.ToList();
+            var produtos = _context.Produtos.AsNoTracking().ToList();
             return Ok(produtos);
 
         }

@@ -26,7 +26,8 @@ namespace APICatalogo.Controllers
         {
             if (_context.Categorias == null) return NotFound("Categories not found");
             
-            var categoriasProdutos = _context.Categorias.Include(p => p.Produtos).ToList();
+            var categoriasProdutos = _context.Categorias.Include(
+                p => p.Produtos).AsNoTracking().ToList();
             return Ok(categoriasProdutos);
         }
         
@@ -35,7 +36,7 @@ namespace APICatalogo.Controllers
         {
             if (_context.Categorias == null) return NotFound("Categories not found");
             
-            var categorias = _context.Categorias.ToList();
+            var categorias = _context.Categorias.AsNoTracking().ToList();
             return Ok(categorias);
         }
         
