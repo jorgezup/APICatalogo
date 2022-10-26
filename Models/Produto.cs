@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace APICatalogo.Models;
 //Classes Anêmicas - Classes que não tem comportamento - Classes que não tem métodos - Só possuem propriedades
@@ -29,5 +30,7 @@ public class Produto
     public DateTime DataCadastro { get; set; }
     
     public int CategoriaId { get; set; } //Chave estrangeira
+    
+    [JsonIgnore] //Ignora a propriedade Categoria na serialização
     public Categoria? Categoria { get; set; } //Propriedade de Navegação
 }
